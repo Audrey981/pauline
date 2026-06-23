@@ -1,4 +1,4 @@
-Site vitrine pour Pauline, céramiste
+Site vitrine pour Pauline Rebufat, céramiste
 # Astro Starter Kit: Minimal
 
 ```sh
