@@ -1,0 +1,109 @@
+---
+interface Props {
+  titre: string;
+  texte: string;
+  lienLabel?: string;
+  lienHref?: string;
+  image: any;
+}
+
+const {
+  titre,
+  texte,
+  lienLabel = "Parlons de votre projet",
+  lienHref = `${import.meta.env.BASE_URL}contact`,
+  image
+} = Astro.props;
+---
+
+<div class="hero-service" style={`--bg: url(${image.src})`}>
+  <div class="text-hero-service">
+    <div class="main-text"><h1>{titre}</h1></div>
+    <div class="secondary-text" set:html={texte} />
+    <a href={lienHref} class="bouton-fonce">{lienLabel}</a>
+  </div>
+</div>
+
+<style>
+
+.hero-service {
+  position: relative; 
+  background-image: var(--bg);
+  background-size: cover;        /* ← étire l'image pour couvrir tout le div */
+  background-position: center;   /* ← centre l'image */
+  background-repeat: no-repeat;  /* ← empêche la répétition */
+  width: 100%;  /*100vw; pleine largeur*/
+  height: 65vh; 
+  /*margin-left: calc(50% - 50vw);     Revoir l'effet image, pourquoi ne bouge-t-elle pas??    */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  box-sizing: border-box;  
+}
+
+/* Overlay blanc */
+.hero-service::before {
+  content: '';
+  position: absolute;
+  inset: 0;                      /* top/right/bottom/left: 0 shorthand */
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+
+
+.text-hero-service {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #1f2937;
+  max-width: 600px;
+  margin: 0 5rem 0 0;
+  
+}
+.text-hero-service h1 {
+  font-size: 42px;
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text);
+}
+.text-hero-service .secondary-text {
+  
+  line-height: 1.5;
+  margin: 0;  
+  color: var(--color-text);
+}
+
+.text-hero-service * {
+  max-width: 100%;                 /* TOUT texte respecte */
+  word-wrap: break-word;
+  box-sizing: border-box;}
+
+@media (max-width: 768px) {
+  .hero-service {
+    padding: 0 5%;
+    min-height: 60vh;
+    background-attachment: scroll;
+  }
+  .text-hero-service h1 {
+    font-size: clamp(28px, 5vw, 42px);
+  }
+  .text-hero-service .secondary-text {
+    font-size: 1rem;
+  }
+
+  .text-hero-service {
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
+  }
+  .bouton-fonce {
+    display: block !important;
+    margin-inline: auto !important;
+    width: fit-content;
+  }
+}
+</style>

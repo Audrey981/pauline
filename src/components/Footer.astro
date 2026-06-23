@@ -1,0 +1,122 @@
+---
+import logo from '../images/logo.webp';
+import { siteConfig } from '../config/site.ts';
+
+interface Props {
+  liens?: { label: string; href: string }[];
+  liensLegaux?: { label: string; href: string }[];
+  createur?: string;
+  lienCreateur?: string;
+}
+
+const {
+  liens = [
+    { label: "Accueil", href: `${import.meta.env.BASE_URL}` },
+    { label: "À propos", href: `${import.meta.env.BASE_URL}apropos` },
+    { label: "Contact", href: `${import.meta.env.BASE_URL}contact` }
+  ],
+  liensLegaux = [
+    { label: "Mentions légales", href: `${import.meta.env.BASE_URL}mentionslegales` },
+    { label: "Politique de confidentialité", href: `${import.meta.env.BASE_URL}politiqueconfidentialite` }
+  ],
+  createur = "Pas à page",
+  lienCreateur = "https://pasapage.fr"
+} = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer-logo">
+    <img src={logo.src} alt={`Logo ${siteConfig.name}`} width="250" height="210" />
+  </div>
+
+  <div class="footer-menu">
+    <p>Parcourir</p>
+    {liens.map((lien) => (
+      <div><a href={lien.href}>{lien.label}</a></div>
+    ))}
+  </div>
+
+  <div class="footer-menu">
+    <p>Aides et Légal</p>
+    {liensLegaux.map((lien) => (
+      <div><a href={lien.href}>{lien.label}</a></div>
+    ))}
+
+        <div class="footer-credit">
+      <span>Crédits photos : </span>
+      <a href="https://www.facebook.com/p/David-Delarue-Photographies-100063636365017/?locale=fr_FR" target="_blank" rel="noopener noreferrer">
+        David Delarue
+      </a>
+    </div>
+
+    <div>
+  <span>&copy; {year} </span>
+  {lienCreateur 
+    ? <a href={lienCreateur} target="_blank" rel="noopener noreferrer">{createur}</a>
+    : <span>{createur}</span>
+  }
+</div>
+  </div>
+</footer>
+
+<style>
+footer {
+  background: var(--color-text); 
+  color: var(--color-bg1);
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.footer-credit {
+  margin-top: 0.75rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo img {
+  border-radius: 12px;
+  height: 220px;
+  width: auto;
+  border-radius: 12px;
+}
+
+footer p, footer a, footer span {
+    font-size: 0.85em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;       /* même couleur que le texte */
+}
+
+p {
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .footer-menu {
+    width: 100%;
+  }
+}
+
+</style>
+

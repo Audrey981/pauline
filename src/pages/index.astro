@@ -1,17 +1,272 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HeroLeft from '../components/HeroLeft.astro';
+import BlocTexteImage from '../components/BlocTexteImage.astro';
+import Etapes from '../components/Etapes.astro';
+import BlocTexte from '../components/BlocTexte.astro';
+import Avis from '../components/Avis.astro';
+import Presse from '../components/Presse.astro';
+import Slider from '../components/Slider.astro';
+import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
+import Action from '../components/Action.astro';
 
+import { siteConfig } from '../config/site';
+
+
+import monImage from '../images/natacha1.webp';
+import maPhoto from '../images/atelier4.webp';
+import tonImage from '../images/atelier11.webp';
+
+
+import natacha3 from '../images/natacha3.webp';
+import natacha4 from '../images/natacha4.webp';
+import natacha6 from '../images/natacha6.webp';
+import natacha8 from '../images/natacha8.webp';
+import atelier from '../images/atelier.webp';
+import atelier2 from '../images/atelier2.webp';
+import atelier3 from '../images/atelier3.webp';
+import atelier5 from '../images/atelier5.webp';
+import atelier6 from '../images/atelier6.webp';
+import atelier7 from '../images/atelier7.webp';
+import atelier9 from '../images/atelier9.webp';
+import atelier10 from '../images/atelier10.webp';
+import atelier8 from '../images/atelier8.webp';
+
+
+
+
+const realisations = [
+  { src: natacha3.src, alt: "Natacha Jarry, boxe thérapeute à Saumur", width: 500, height: 333 },
+  { src: natacha4.src, alt: "Natacha seule en train de boxer", width: 500, height: 333 },
+  { src: natacha6.src, alt: "moment de sororité Natacha boxe thérapie", width: 600, height: 399 },
+  { src: natacha8.src, alt: "Natacha boxe et miroir", width: 900, height: 600 },
+  { src: atelier.src, alt: "atelier de boxe thérapie à Saumur", width: 450, height: 600 },
+  { src: atelier2.src, alt: "photo d'un atelier de boxe thérapie à Saumur", width: 350, height: 487 },
+  { src: atelier3.src, alt: "image d'une séance boxe thérapie avec Natacha", width: 450, height: 600 },
+  { src: atelier5.src, alt: "une enfant lors d'un atelier de boxe thérapie à Saumur", width:350, height: 466 },
+  { src: atelier6.src, alt: "Natacha et une élève en boxe thérapie à Saumur", width:518, height: 600 },
+  { src: atelier7.src, alt: "atelier collectif de boxe thérapie à Saumur", width:399, height: 600 },
+  { src: atelier8.src, alt: "atelier avec Natacha boxe thérapie à Saumur", width:399, height: 600 },
+  { src: atelier9.src, alt: "Natacha boxe thérapie à Saumur", width:600, height: 692 },
+  { src: atelier10.src, alt: "séance avec Natacha de boxe thérapie à Saumur", width:600, height: 900 },
+];
+
+const mesEtapes = [
+  { titre: "Premier échange", texte: "Un temps pour faire connaissance, comprendre votre activité et poser les bases du projet." },
+  { titre: "Définition des besoins", texte: "Nous clarifions ensemble vos objectifs, vos priorités et la direction à donner au site." },
+  { titre: "Création du projet", texte: "Je construis une proposition adaptée, avec une structure pensée pour votre activité et vos utilisateurs." },
+  { titre: "Mise en ligne", texte: "Une fois le projet finalisé et validé, le site est mis en ligne et prêt à vivre." },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title={`${siteConfig.name} - ${siteConfig.tagline}`}
+  description={siteConfig.description}
+  canonical={siteConfig.url}
+  ogTitle={`${siteConfig.name} - ${siteConfig.tagline}`}
+  ogDescription={siteConfig.description}
+  schema={[
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Natacha Boxe Thérapie",
+      "url": "https://natacha-boxetherapie.fr",
+      "telephone": "+33684556902",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Saumur",
+        "addressRegion": "Pays de la Loire",
+        "addressCountry": "FR"
+      },
+      "description": siteConfig.description,
+      "areaServed": "Saumur et rayon de 20km"
+    }
+  ]} 
+>
+
+  <Hero
+    titre="Nom de l'activité"
+    texte="<p><strong>ici le slogan principal</strong></p>
+            <em>une phrase courte qui complète la promesse</em>
+          <p><strong>Métier</strong> ville et zone d'intervention</p>
+
+<p>J'accompagne mes clients avec une approche humaine, claire et adaptée à leurs besoins. </p>
+ <p>Ce texte de démonstration permet de visualiser la structure du hero avant de le personnaliser pour un vrai projet.</p>"
+    image={monImage}
+    imageAlt="image alt"
+    lienLabel="Je prends contact"
+    lienHref={`${import.meta.env.BASE_URL}contact`}
+  />
+
+  <HeroLeft
+  titre="Présenter votre approche"
+  texte={`
+    <p>Ici, j'explique simplement votre activité et votre manière d'accompagner vos clients</p>
+
+      <p>Cette section de démonstration sert à montrer comment afficher un texte plus développé, avec plusieurs paragraphes, un sous-titre et une liste de points clés.</p>
+
+    <p>L’idée est de garder une structure réaliste, sans rester sur un contenu trop lié à un projet client précis.</p>
+
+    <h3>Ce que cette section peut mettre en avant</h3>
+    <ul>
+      <li>Votre façon de travailler</li>
+      <li>Les bénéfices pour vos clients</li>
+      <li>Votre posture ou votre méthode</li>
+      <li>Les éléments qui vous différencient</li>
+      <li>Le cadre de votre accompagnement</li>
+    </ul>
+  `}
+  image={tonImage}
+  imageAlt="image de démonstration"
+/>
+  
+<BlocTexteImage
+  titre="À qui s’adresse votre accompagnement ?"
+  texte="<h3>Un premier profil de client</h3>
+      <p>Présente ici un type de public que tu accompagnes, avec ses besoins, ses attentes et ce que ton activité peut lui apporter.</p>
+
+      <h3>Un second profil de client</h3>
+      <p>Tu peux aussi utiliser cette section pour montrer que ton offre s’adapte à différentes situations, avec une approche personnalisée et progressive.</p>"
+  image={maPhoto}
+  imageAlt="Image de démonstration"
+/>
+
+<BlocTexteImage
+  texte="<h3>Une autre utilisation de ton offre</h3>
+      <p>Cette zone peut servir à présenter un autre public, un autre service ou un autre contexte d’intervention, par exemple en entreprise, en atelier ou en accompagnement spécifique.</p>
+
+      <h3>Un accompagnement adaptable</h3>
+      <p>Tu peux montrer ici que ton approche s’ajuste aux besoins, au rythme et au cadre de chaque personne ou structure accompagnée.</p>"
+  lienLabel="En savoir plus"
+  lienHref={`${import.meta.env.BASE_URL}apropos`}
+/>
+
+<Etapes
+  titre="Comment se déroule l’accompagnement ?"
+  intro="Chaque projet commence par un premier échange pour comprendre vos besoins, vos objectifs et le contexte de votre activité.<br>
+  Cette section de démonstration permet de présenter les grandes étapes d’un accompagnement, de façon simple et lisible.<br>
+  Le contenu sera ensuite adapté à chaque projet client."
+  etapes={mesEtapes}
+/>
+
+
+  <Avis
+    titre="Ils m'ont fait confiance"
+    lienTous="https://share.google/MIFRXhOpA1wNrpwJp" 
+    avis={[
+    {
+      texte: "Un témoignage de démonstration pour visualiser la section avis. Cette zone pourra ensuite accueillir de vrais retours clients adaptés au projet.",
+      auteur: "Claire"
+    },
+    {
+      texte: "Le starter permet ici de tester l’affichage des retours clients, la longueur du texte et la mise en page sur plusieurs cartes.",
+      auteur: "Julien"
+    },
+    {
+      texte: "Cette section peut être conservée, modifiée ou retirée selon les besoins du futur site. Elle sert avant tout d’exemple dans cette version de base.",
+      auteur: "Sophie"
+    }
+  ]}
+  />
+
+
+  <BlocTexte 
+       titre="Mes tarifs"
+  description=" <h3>Séance individuelle : prix en €</h3>
+    
+    <p>Un <strong>accompagnement personnalisé</strong> pour <strong>libérer les tensions, te reconnecter à toi-même et avancer selon tes envies.</strong> <br>
+    Chaque séance s'adapte à tes besoins, dans le respect de ton corps, de tes émotions et de ton histoire.</p>
+    <h3>Ateliers collectifs, associations et entreprises</h3>
+    <strong>Tarif sur devis</strong>
+    <p>J'interviens auprès de différents publics — adolescents, adultes, structures médico-sociales, entreprises — avec des <strong>séances adaptées</strong> aux objectifs et aux besoins de chacun. </p>
+"
+  boutonTexte="Parlons de ton projet"
+  boutonLien={`${import.meta.env.BASE_URL}contact`}
+  
+/>
+  <Presse 
+    titre="Galerie de céramique"
+  articles={[
+    {
+      image: `${import.meta.env.BASE_URL}presse1.jpeg`,
+      imageAlt: "Article du courrier de l'Ouest du 15 mars 2026 sur Natacha Boxe Thérapie",
+      imageWidth: 220,
+      imageHeight: 510,
+      titre: "Le courrier de l'Ouest",
+      date: "15/03/2026"
+    },
+    {
+      image: `${import.meta.env.BASE_URL}presse2.jpeg`,
+      imageAlt: "Article du courrier de l'Ouest du 9 juillet 2025 sur Natacha Boxe Thérapie",
+      imageWidth: 450,
+      imageHeight: 521,
+      titre: "Le courrier de l'Ouest",
+      date: "9/07/2025"
+    },
+    {
+      image: `${import.meta.env.BASE_URL}presse3.jpeg`,
+      imageAlt: "Article du courrier de l'Ouest du 10 mars 2025 sur Natacha Boxe Thérapie",
+      imageWidth: 450,
+      imageHeight: 629,
+      titre: "Le courrier de l'Ouest",
+      date: "10/03/2025"
+    },
+    {
+      image: `${import.meta.env.BASE_URL}presse4.jpeg`,
+      imageAlt: "Article du courrier de l'Ouest du 5 mars 2025 sur Natacha Boxe Thérapie",
+      imageWidth: 450,
+      imageHeight: 629,
+      titre: "Le courrier de l'Ouest",
+      date: "5/03/2025"
+    }
+  ]}
+  />
+
+
+
+  <Slider
+    slides={realisations}
+    title="Galerie de démonstration"
+    subtitle="Cette section permet de mettre en valeur des images, des réalisations ou l’univers visuel d’une activité."
+    instagramUrl="https://www.instagram.com/natacha.boxetherapie"
+  />
+    
+  <QuestionsFrequentes
+  questions={[
+    {
+      question: "À qui s’adresse votre accompagnement ?",
+      reponse: "Cette offre s’adresse aux personnes, entreprises ou structures qui recherchent un accompagnement adapté à leurs besoins. Chaque projet est étudié au cas par cas afin de proposer une réponse cohérente avec les objectifs et le contexte."
+    },
+    {
+      question: "Comment se déroule un premier échange ?",
+      reponse: "Le premier contact permet de faire connaissance, de comprendre votre demande et d’identifier les grandes lignes du projet. C’est une étape importante pour vérifier que l’accompagnement proposé correspond bien à vos attentes."
+    },
+    {
+      question: "L’accompagnement est-il personnalisé ?",
+      reponse: "Oui, chaque projet est unique. Les contenus, les objectifs, le rythme et les solutions proposées sont ajustés en fonction de votre activité, de vos priorités et de vos besoins."
+    },
+    {
+      question: "Combien de temps faut-il prévoir ?",
+      reponse: "La durée dépend du type de projet, de son niveau de complexité et des éléments déjà disponibles. Un calendrier plus précis peut être défini après un premier échange."
+    },
+    {
+      question: "Proposez-vous un devis ?",
+      reponse: "Oui, un devis peut être établi après avoir clarifié votre besoin. Cela permet de vous proposer une solution adaptée, avec un cadre de travail clair et transparent."
+    },
+    {
+      question: "Peut-on faire évoluer le projet ensuite ?",
+      reponse: "Oui, le projet peut évoluer avec le temps. Le site ou l’accompagnement peut être ajusté selon vos nouveaux besoins, vos retours ou le développement de votre activité."
+    }
+  ]}
+/>
+
+ <Action 
+  titre="Un projet en tête ?"
+  texte="Expliquez votre besoin et échangeons sur la solution la plus adaptée à votre activité."
+  lienLabel="Me contacter"
+  lienHref={`${import.meta.env.BASE_URL}contact`}
+/>
+
+
+</BaseLayout>

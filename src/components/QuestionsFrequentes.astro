@@ -1,0 +1,115 @@
+---
+interface Question {
+  question: string;
+  reponse: string;
+}
+
+interface Props {
+  titre?: string;
+  questions?: Question[];
+}
+
+const {
+  titre = "Vos questions sur l'atelier de céramique de Pauline",
+  questions = []
+} = Astro.props;
+---
+
+<section class="faq-section">
+  <h2 data-aos="fade-up">{titre}</h2>
+  {questions.map((item, index) => (
+    <div class="faq-item" data-aos="fade-up" data-aos-delay={index * 100}>
+  <h3 class="faq-question">
+    <button type="button" class="faq-question-btn">
+      <span>{item.question}</span>
+      <span class="faq-toggle">+</span>
+    </button>
+  </h3>
+  <div class="faq-answer">
+    <p set:html={item.reponse} />
+  </div>
+</div>
+  ))}
+</section>
+
+    <style>
+
+
+.faq-section {
+  background: var(--bg-marble);
+  padding: 2% 10%;
+}
+
+.faq-section h2 {
+  text-align: center;
+  margin: 0 0 2rem;
+  color: var(--color-text-inverse);
+
+}
+
+.faq-item {
+  max-width: 900px;
+  margin: 0.75rem auto;
+  background: var(--color-bg1);
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 12px;
+  overflow: visible;
+
+}
+
+.faq-question {
+  margin: 0;
+  color: var(--color-text);
+
+}
+
+.faq-question-btn {
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.faq-toggle {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #000;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 1.25rem 1rem;
+  color: var(--color-text);
+}
+
+.faq-answer.active {
+  display: block;
+}
+
+.faq-answer p {
+  margin: 0.75rem 0 0;
+}
+    </style>
+
+<script>
+
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const answer = q.nextElementSibling;
+      if (!answer) return;
+      const isActive = answer.classList.contains('active');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+      if (!isActive) answer.classList.add('active');
+    });
+  });
+
+</script>   

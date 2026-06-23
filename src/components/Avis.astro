@@ -1,0 +1,159 @@
+ ---
+interface Avis {
+  texte: string;
+  auteur: string;
+  etoiles?: number;
+}
+
+interface Props {
+  titre?: string;
+  avis?: Avis[];
+  lienTous?: string;
+}
+
+const {
+  titre = "Ils m'ont fait confiance",
+  lienTous = "#",
+  avis = []
+} = Astro.props;
+---
+
+<section class="avis">
+  <h2 data-aos="fade-up">{titre}</h2>
+  <div class="avis-list">
+    {avis.map((a, index) => (
+      <div class="avis-item" data-aos="fade-up" data-aos-delay={index * 100}>
+        <div class="stars">{"★".repeat(a.etoiles ?? 5)}</div>
+        <p>{a.texte}</p>
+        <span>— {a.auteur}</span>
+      </div>
+    ))}
+  </div>
+  <p class="avis-source" data-aos="fade-up" data-aos-delay={avis.length * 100}>
+    Avis issus de Google —
+    <a href={lienTous} target="_blank" rel="noopener">
+      👉<strong>Voir tous les avis</strong>
+    </a>
+  </p>
+  
+</section>
+
+<style>
+
+.avis {
+  width: 100%;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background-color: var(--color-bg1);
+  color: var(--color-text);
+}
+
+.avis h2 {
+  margin-bottom: 2rem;
+}
+
+.avis-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 32px auto 0;
+  align-items: start;
+  min-width: 0;
+}
+
+.avis-item {
+  background: var(--bg-marble);
+  color: var(--color-text-inverse);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  min-width: 0;
+}
+
+.stars {
+  color: var(--color-button);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.avis-item p {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.6;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.avis-item span {
+   display: block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--color-text-inverse);
+}
+
+.avis-source {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.avis-source a {
+  opacity: 1;
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.stars,
+.avis-item span {
+  text-align: center;
+}
+
+.avis-source a:hover {
+  text-decoration: underline;
+}
+
+.avis-item p::before {
+  content: "« ";
+  color: var(--color-button);
+  font-size: 1.4rem;
+}
+
+.avis-item p::after {
+  content: " »";
+  color: var(--color-button);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 700px) {
+  .avis {
+    padding: 2.5rem 1rem;
+  }
+
+  .avis-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .avis-item {
+    min-height: auto;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .avis-source {
+    padding: 0 1rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .avis-source a {
+    display: inline-block;
+    word-break: keep-all;
+  }
+}
+</style>

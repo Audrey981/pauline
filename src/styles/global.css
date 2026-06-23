@@ -1,0 +1,156 @@
+@import '@fontsource/lexend/400.css';
+@import '@fontsource/lexend/500.css';
+@import '@fontsource/lexend/700.css';
+@import '@fontsource/great-vibes';
+
+:root {
+  --color-bg1: #FEF5EB;
+  --color-bg2: #2C7A7B ;
+  --color-text: #3A2F28;
+  --color-text-inverse: #FDF8F2;
+  --color-button: #8C6A2A;
+  --marble-base: #2C7A7B;
+  --marble-light: #A9D6D2;
+  --marble-mid: #6BAFA9;
+  --marble-dark: #1F5E60;
+
+  --bg-marble:
+    radial-gradient(circle at 20% 30%, rgba(169, 214, 210, 0.35), transparent 35%),
+    radial-gradient(circle at 75% 20%, rgba(107, 175, 169, 0.22), transparent 30%),
+    radial-gradient(circle at 60% 75%, rgba(31, 94, 96, 0.18), transparent 28%),
+    linear-gradient(135deg, var(--marble-base) 0%, #256B6C 45%, var(--marble-dark) 100%);
+}
+
+body
+ {
+  font-family: 'Lexend', system-ui, sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+ /* overflow-x: hidden; /*pas de scroll horizontal*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400; /* Great Vibes n'a que le 400 */
+  margin: 0;
+  line-height: 1.2;
+  font-size: 72px; /* augmente ici — essaie 64px, 72px ou 80px */
+}
+
+h2 {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 500; /* moins gras que 700 — essaie aussi 400 ou 600 */
+}
+
+h3, strong {
+  font-weight: 500; /* le gras reste sur h2, h3, strong */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+.container {
+  max-width: 1300px;   /* ajuster selon la largeur souhaitée */
+  margin-inline: auto; /* centre le container horizontalement*/
+  padding-inline: clamp(1rem, 5%, 3rem); /*espace intérieur gauche droite : min 16px, idéalement 5% max 48px, s'adapte automoatiquement*/
+  width: 100%; /* prend toute la largeur disponible de son parent dans la limite du max width */
+  box-sizing: border-box; /* padding inclus dans la largeur calculée */
+}
+
+p, li {
+  text-align: left;
+  hyphens: auto;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.links a {
+  font-size: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;       /* même couleur que le texte */
+  font-weight: 400;     /* optionnel */
+}
+/*
+.main-text {
+  font-size: 42px;
+  color: #f9faf8; 
+  margin: 0;
+}
+*/
+
+/*
+.secondary-text {
+  font-size: inherit;
+  color: #f2eef7;
+  margin: 0;
+}
+*/
+.bouton-clair {
+  background-color: var(--color-bg1);
+  color: var(--color-text);
+  padding: 10px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 2px solid #ffffff;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;       /* Respecte largeur parent */
+  max-width: 100%;             /* Jamais plus large */
+  box-sizing: border-box;      /*  Inclut padding */
+}
+
+.bouton-clair:hover {
+  background-color: color-mix(in oklch, var(--color-bg1) 80%, black);
+  border-color: var(--color-text);
+  box-shadow: 0 4px 10px oklch(0 0 0 / 0.25);
+  transform: translateY(-2px);
+}
+
+
+.bouton-fonce {
+  background-color: var(--color-button);
+  color: var(--color-text-inverse);
+  margin: 20px;
+  border-radius: 20px;
+  border: 2px solid white;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; 
+  display: inline-block;       /* Respecte largeur parent */
+  max-width: 100%;             /* Jamais plus large */
+  box-sizing: border-box;      /*  Inclut padding */
+  padding: 10px;
+}
+
+.bouton-fonce:hover {
+  background-color: color-mix(in oklch, var(--color-button) 80%, black);
+  border-color: var(--color-bg1);
+  box-shadow: 0 4px 10px oklch(0 0 0 / 0.25);
+  transform: translateY(-2px);
+}
+
+h2 {
+  font-size: 28px;
+  text-align: center;
+}

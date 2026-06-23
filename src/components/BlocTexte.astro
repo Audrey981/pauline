@@ -1,0 +1,95 @@
+---
+interface Props {
+  titre?: string;
+  description?: string;
+  boutonTexte?: string;
+  boutonLien?: string;
+  sapLien?: string;
+  sapImage?: string;
+  sapImageAlt?: string;
+}
+
+const {
+  titre = "Petits travaux de bricolage à domicile",
+  description = "J'accompagne les particuliers...",
+  boutonTexte, //
+  boutonLien, //
+  sapLien = "https://www.servicesalapersonne.gouv.fr/...",
+  sapImage,
+  sapImageAlt = "logo officiel service à la personne",
+} = Astro.props;
+---
+
+<section class="presentation">
+  <div class="container" data-aos="fade-up">
+    <h2>{titre}</h2>
+    <p set:html={description} />
+  </div>
+
+  <div class="cta" data-aos="fade-up" data-aos-delay="200">
+    <div class="texte-cta">
+      {boutonTexte && (
+      <a href={boutonLien} class="bouton-fonce">{boutonTexte}</a>
+      )}
+      {sapImage && (  // 👈 conditionnel ici aussi
+      <p>Éligible au <a href={sapLien} target="_blank" rel="noopener noreferrer"  class="lien-texte">Service à la personne</a> selon prestations</p>
+      )}
+    </div>
+
+    {sapImage && (
+      <a href={sapLien} target="_blank" rel="noopener noreferrer" class="image-cta" aria-label="En savoir plus sur le CESU">
+        <img src={sapImage} alt={sapImageAlt} width="220" height="162" />
+      </a>
+    )}
+  </div>
+</section>
+
+
+<style>
+
+.presentation {
+  padding: 2% 0; 
+  text-align:start;
+  background: var(--bg-marble);
+  color: var(--color-text-inverse);
+}
+.cta {
+  display: flex;
+  flex: 1;
+  margin: 0;
+  padding: 0 5%;
+  justify-content: center;
+  gap: 5rem;
+  align-items: center;
+}
+
+.texte-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  max-width: 600px;
+  margin: 0;
+}
+
+.image-cta {
+  display: flex;
+}
+@media (max-width: 900px) {
+  .cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .cta .bouton-fonce {
+    display: block !important;
+    margin-inline: auto !important;
+    width: fit-content;
+    padding: 1rem 2.5rem;
+  }
+  .texte-cta {
+    align-items: center;
+  }
+}
+</style>

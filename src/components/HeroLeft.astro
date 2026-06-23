@@ -1,0 +1,153 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  titre: string;
+  texte: string;
+  lienLabel?: string;
+  lienHref?: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  imageWidth?: number;
+  imageHeight?: number;
+}
+
+const {
+  titre,
+  texte,
+  lienLabel,
+  lienHref = `${import.meta.env.BASE_URL}services`,
+  image,
+  imageAlt,
+  imageWidth = 600,
+  imageHeight = 399
+} = Astro.props;
+---
+
+<div class="hero">
+  <div class="hero-img" data-aos="fade-right">
+    <img
+      src={image.src}
+      alt={imageAlt}
+      width={imageWidth}
+      height={imageHeight}
+      loading="lazy"
+    >
+  </div>
+
+  <div class="text-hero" data-aos="fade-left">
+    <div class="main-text"><h2>{titre}</h2></div>
+    <div class="secondary-text" set:html={texte} />
+    {lienLabel && (
+  <a href={lienHref} class="bouton-fonce">{lienLabel}</a>
+    )}  
+</div>
+</div>
+
+<style>
+
+.hero {
+  background: var(--bg-marble);
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0 10%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  padding: 2rem 0;
+  color: var(--color-text-inverse);
+}
+
+.hero-img {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0;
+  border: 1px solid #000;
+  border-radius: 12px;
+}
+
+.secondary-text :global(p) {
+  margin-bottom: 1rem;
+}
+
+.secondary-text :global(h3) {
+  margin: 1.5rem 0 0.75rem;
+}
+
+.secondary-text :global(ul) {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin: 1rem 0;
+}
+
+.secondary-text :global(li) {
+  margin-bottom: 0.5rem;
+  list-style-position: outside;
+}
+
+.secondary-text :global(li::marker) {
+  color: var(--color-button);
+}
+
+@media screen and (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 5%;
+    text-align: center;
+  }
+
+  .text-hero {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+    order: 1;
+  }
+
+  .hero-img img {
+    max-width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+ .hero-img {
+    order: 2; /* image en dessous */
+    width: 100%;
+  }
+
+  .main-text {
+    font-size: clamp(28px, 5vw, 42px);
+  }
+
+  .secondary-text {
+    font-size: inherit;
+  }
+
+  .bouton-fonce {
+    display: block !important;
+    margin-inline: auto !important;
+    text-align: center;
+    width: fit-content;
+    margin: 10px 0;
+  }
+}
+</style>
