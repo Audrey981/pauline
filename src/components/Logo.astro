@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+  width?: string | number;
+  height?: string | number;
+}
+
+const { class: className = "", width = 56, height = 56 } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 120 120"
+  width={width}
+  height={height}
+  class={className}
+  aria-hidden="true"
+>
+  <circle cx="60" cy="60" r="60" fill="#8C6A2A" />
+  <text
+    x="50%"
+    y="54%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="#FEF5EB"
+    font-family="'Cormorant Garamond', 'Times New Roman', serif"
+    font-size="62"
+    font-weight="600"
+  >
+    R
+  </text>
+</svg>

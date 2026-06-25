@@ -3,51 +3,125 @@ interface Props {
   liens?: { label: string; href: string }[];
 }
 
-const { 
+const {
   liens = [
-     { label: "Accueil", href: `${import.meta.env.BASE_URL}` },
+    { label: "Accueil", href: `${import.meta.env.BASE_URL}` },
     { label: "À propos", href: `${import.meta.env.BASE_URL}apropos` },
     { label: "Contact", href: `${import.meta.env.BASE_URL}contact` }
   ]
 } = Astro.props;
-
 ---
-<div class="elements">
-  <div class="links">
-    {liens.map((lien) => (
-      <a href={lien.href}>{lien.label}</a>
-    ))}
+
+<nav class="nav" aria-label="Navigation principale">
+  <div class="elements desktop-links">
+    <div class="links">
+      {liens.map((lien) => (
+        <a href={lien.href}>{lien.label}</a>
+      ))}
+    </div>
   </div>
-</div>
+
+  <details class="mobile-menu">
+    <summary aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </summary>
+
+    <div class="mobile-panel">
+      {liens.map((lien) => (
+        <a href={lien.href}>{lien.label}</a>
+      ))}
+    </div>
+  </details>
+</nav>
 
 <style>
+.nav {
+  margin-left: auto;
+  position: relative;
+}
 
 .elements {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 0;
   padding: 0;
-  margin-left: auto;
   font-size: 0.90em;
 }
+
 .links {
   display: flex;
   gap: 20px;
-  
 }
 
-.links a {
+.links a,
+.mobile-panel a {
   font-size: inherit;
-  white-space: nowrap; /* ← empêche le retour à la ligne */
+  white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
 }
 
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu summary span {
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  display: block;
+  border-radius: 999px;
+}
+
+.mobile-panel {
+  margin-top: 0.75rem;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 0.9rem;
+  background: inherit;
+  color: inherit;
+  border: 1px solid rgba(140, 106, 42, 0.18);
+  border-radius: 0.9rem;
+  box-shadow: 0 10px 20px rgba(60, 40, 10, 0.08);
+}
+
+.mobile-panel a {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  padding: 0.3rem 0;
+}
+
+.mobile-menu {
+  display: none;
+}
 
 @media screen and (max-width: 900px) {
-  .elements {
-    justify-content: center;
+  .desktop-links {
+    display: none;
   }
-  .links a {
-    font-size: clamp(14px, 3.5vw, 16px);
+
+  .mobile-menu {
+    display: block;
+    margin-left: auto;
   }
 }
 </style>
